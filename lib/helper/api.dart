@@ -23,7 +23,27 @@ class Api {
     Map<String, String> headers = {};
     if (token != null) headers.addAll({'Accept': 'application/json'});
     http.Response response = await http.post(
-      Uri.parse('url'),
+      Uri.parse(url),
+      body: body,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception(
+          'there is a problem with status code ${response.statusCode}');
+    }
+  }
+  Future<dynamic> put({
+    required String url,
+    @required dynamic body,
+    @required String? token,
+  }) async {
+    Map<String, String> headers = {};
+    if (token != null) headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
+    http.Response response = await http.post(
+      Uri.parse(url),
       body: body,
       headers: headers,
     );
