@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:store/models/get_model.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({Key? key}) : super(key: key);
+  CustomCard({required this.product, Key? key}) : super(key: key);
+  ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -20,27 +22,33 @@ class CustomCard extends StatelessWidget {
                     spreadRadius: 10,
                     offset: const Offset(1, 1)),
               ]),
-          child: const Card(
+          child: Card(
             elevation: 5,
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hand Bag LV',
-                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                    product.title.substring(0, 6),
+                    style: const TextStyle(color: Colors.grey, fontSize: 18),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(r'$255'),
-                      Icon(
+                      Text(r'$' '${product.price.toString()}',
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.start),
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       )
@@ -52,11 +60,12 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         Positioned(
-         left: 30,top: -130,
-          child: Image.asset(
-            'assets/vecteezy_isolated-black-t-shirt-white-hanger_8847294.png',
-            width: 200,
-            height: 200,
+          left: 80,
+          top: -90,
+          child: Image.network(
+            product.image,
+            width: 100,
+            height: 150,
           ),
         ),
       ],
