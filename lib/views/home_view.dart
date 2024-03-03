@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../models/get_model.dart';
 import '../services/get_all_product.dart';
 import '../widget/custom_card.dart';
+import 'update_product.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -47,10 +48,14 @@ class HomeView extends StatelessWidget {
                     mainAxisSpacing: 100,
                   ),
                   itemBuilder: (context, index) {
-                    return  GestureDetector(child: CustomCard(product: products[index]),
-                    onTap: () {
-                     
-                    },
+                    return GestureDetector(
+                      child: CustomCard(product: products[index]),
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          UpdateProduct.id,
+                        );
+                      },
                     );
                   });
             } else {
