@@ -7,8 +7,9 @@ import '../widget/custom_card.dart';
 import 'update_product.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+   HomeView({Key? key}) : super(key: key);
   static String id = 'HomeView';
+  ProductModel? product;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +55,8 @@ class HomeView extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           UpdateProduct.id,
+                          arguments: product,
+
                         );
                       },
                     );
