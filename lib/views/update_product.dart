@@ -99,6 +99,7 @@ class _UpdateProductState extends State<UpdateProduct> {
 
   Future<void> updateProducts(ProductModel product) async {
     await UpDateProduct().Updateproduct(
+      id: product.id,
       title: productName == null ? product.title : productName!,
       price: productPrice == null ? product.price.toString() : productPrice!,
       description: productDescription == null
