@@ -79,8 +79,9 @@ class _UpdateProductState extends State<UpdateProduct> {
                   onPressed: () async {
                     isLoding = true;
                     setState(() {});
-                    try {
                       await updateProducts(product);
+                    try {
+                    
                       print('sccess');
                     } catch (e) {
                       print('error');
