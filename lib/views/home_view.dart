@@ -9,7 +9,7 @@ import 'update_product.dart';
 class HomeView extends StatelessWidget {
    HomeView({Key? key}) : super(key: key);
   static String id = 'HomeView';
-  ProductModel? product;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,17 +49,7 @@ class HomeView extends StatelessWidget {
                     mainAxisSpacing: 100,
                   ),
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      child: CustomCard(product: products[index]),
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          UpdateProduct.id,
-                          arguments: product,
-
-                        );
-                      },
-                    );
+                    return CustomCard(product: products[index]);
                   });
             } else {
               return const Center(

@@ -76,11 +76,12 @@ class _UpdateProductState extends State<UpdateProduct> {
                   height: 40,
                 ),
                 CustomButtom(
-                  onPressed: () {
+                  onPressed: () async {
                     isLoding = true;
                     setState(() {});
                     try {
-                      updateProducts(product);
+                      await updateProducts(product);
+                      print('sccess');
                     } catch (e) {
                       print('error');
                     }
@@ -96,12 +97,14 @@ class _UpdateProductState extends State<UpdateProduct> {
     );
   }
 
-  void updateProducts(ProductModel product) {
-    UpDateProduct().Updateproduct(
-      title: productName!,
-      price: productPrice!,
-      description: productDescription!,
-      image: productImage!,
+  Future<void> updateProducts(ProductModel product) async {
+    await UpDateProduct().Updateproduct(
+      title: productName == null ? product.title : productName!,
+      price: productPrice == null ? product.price.toString() : productPrice!,
+      description: productDescription == null
+          ? product.description
+          : productDescription!,
+      image: productImage == null ? product.image : productImage!,
       category: product.category,
     );
   }
